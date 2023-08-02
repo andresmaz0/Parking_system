@@ -5,10 +5,5 @@ import frames.*;
 public class Main {
 	public static void main(String args[]) {
 		Background first_frame = new Background();
-		//               Axis x,y width,height
-		first_frame.setBounds(100,30,400,500);
-		first_frame.setVisible(true);
-		first_frame.setLocationRelativeTo(null); // Centering Frame
-		first_frame.setResizable(false); // Can't change the dimentions
 	}
 }
