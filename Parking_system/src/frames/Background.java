@@ -6,8 +6,7 @@ public class Background extends JFrame{
 	
 	public Background() {
 	setLayout(null);
-	//      Axis x,y width,height
-	setBounds(100,30,400,500);
+	setSize(1123,775);
 	setVisible(true);
 	setLocationRelativeTo(null); // Centering Frame
 	setResizable(false); // Can't change the dimentions
