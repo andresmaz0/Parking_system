@@ -11,6 +11,10 @@ import javax.swing.JLabel;
 
 public class Main_menu {
 	
+	public Main_menu() {
+		Create_panel();
+	}
+	
 	public Panel Create_panel() {
 		Panel panel = new Panel();
 		panel.setBackground(new Color(255, 255, 255));
