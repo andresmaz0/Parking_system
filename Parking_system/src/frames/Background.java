@@ -10,5 +10,5 @@ public class Background extends JFrame{
 	setVisible(true);
 	setLocationRelativeTo(null); // Centering Frame
 	setResizable(false); // Can't change the dimentions
-	}
+	}	
 }
