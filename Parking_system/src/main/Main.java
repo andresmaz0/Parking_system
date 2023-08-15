@@ -2,7 +2,6 @@ package main;
 
 import frames.*;
 import javax.swing.*;
-import java.awt.*;
 
 public class Main {
 	public static void main(String args[]) {
@@ -11,5 +10,6 @@ public class Main {
 		first_frame.getContentPane().setLayout(null);
 		Main_menu mymenu = new Main_menu();
 		first_frame.getContentPane().add(mymenu.Create_panel());		
+		
 	}
 }
