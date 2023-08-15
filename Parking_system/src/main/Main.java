@@ -10,6 +10,7 @@ public class Main {
 		first_frame.getContentPane().setLayout(null);
 		Main_menu mymenu = new Main_menu();
 		first_frame.getContentPane().add(mymenu.Create_panel());		
-		
+		Data_explorer myexplorer = new Data_explorer();
+		first_frame.getContentPane().add(myexplorer.Create_panel());
 	}
 }
