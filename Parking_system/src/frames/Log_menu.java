@@ -56,6 +56,15 @@ public class Log_menu {
 		panel.add(lblNewLabel_2);
 		
 		name_text = new JTextField();
+		name_text.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				if(name_text.getText().length() >= 60)
+			    {
+			        e.consume();
+			    }
+			}
+		});
 		name_text.setHorizontalAlignment(SwingConstants.CENTER);
 		name_text.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		name_text.setColumns(10);
@@ -64,7 +73,7 @@ public class Log_menu {
 		
 		JButton btnNewButton = new JButton("Log");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		btnNewButton.setBounds(305, 587, 102, 63);
+		btnNewButton.setBounds(299, 581, 102, 63);
 		panel.add(btnNewButton);
 		
 		return panel;
