@@ -44,6 +44,12 @@ public class Main_menu {
 		remove_button.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		
 		JButton loggin_button = new JButton("Log a vehicle");
+		loggin_button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				data_panel.visible_on(false);
+				log_panel.visible_on(true);
+			}
+		});
 		loggin_button.setBounds(61, 371, 250, 61);
 		panel.add(loggin_button);
 		loggin_button.setFont(new Font("Tahoma", Font.PLAIN, 22));

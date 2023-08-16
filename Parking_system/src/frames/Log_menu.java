@@ -13,9 +13,9 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.Time;
+import java.time.LocalTime;
 import java.util.Date;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -25,7 +25,6 @@ public class Log_menu {
 	JPanel panel;
 	private JTextField license_text;
 	private JTextField name_text;
-	Date date = new Date();
 	
 	public Log_menu() {
 		Create_panel();
@@ -83,8 +82,8 @@ public class Log_menu {
 		name_text.setBounds(65, 427, 596, 78);
 		panel.add(name_text);
 		
-		JButton btnNewButton = new JButton("Log");
-		btnNewButton.addActionListener(new ActionListener() {
+		JButton log_button = new JButton("Log");
+		log_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Connection_sql con = new Connection_sql();
 				try {
@@ -92,9 +91,16 @@ public class Log_menu {
 					Connection new_connection = con.begin_connection();
 					PreparedStatement mystatement = new_connection.prepareStatement("insert INTO parking (license_plate,car_owner,entry_time,depature_time,payment)"
 							+ "VALUES (?,?,?)");
-					mystatement.setString(0, license_text.getText());
-					mystatement.setString(0, name_text.getText());
-					mystatement.setDate(0, (java.sql.Date) date);
+					mystatement.setString(1, license_text.getText());
+					mystatement.setString(2, name_text.getText());
+					
+					// Obtener la hora actual
+		            LocalTime current_time = LocalTime.now();
+
+		            // Convertir la hora actual a Time
+		            Time registration_time = Time.valueOf(current_time);
+		            
+					mystatement.setTime(0, registration_time);
 					
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -103,14 +109,15 @@ public class Log_menu {
 				con.close_connection();
 			}
 		});
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 30));
-		btnNewButton.setBounds(299, 581, 102, 63);
-		panel.add(btnNewButton);
+		log_button.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		log_button.setBounds(299, 581, 102, 63);
+		panel.add(log_button);
 		
 		return panel;
 	}
 	
 	public void visible_on(boolean state) {
+		System.out.println("entre en funcion");
 		panel.setVisible(state);
 	}
 }
