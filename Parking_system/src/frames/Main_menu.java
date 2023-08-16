@@ -8,9 +8,11 @@ import java.awt.Panel;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JLabel;
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 public class Main_menu {
-	
+
 	public Main_menu() {
 		Create_panel();
 	}
@@ -33,26 +35,26 @@ public class Main_menu {
 		lblNewLabel.setForeground(new Color(0, 0, 0));
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 36));
 		
-		JButton btnNewButton = new JButton("Remove a vehicle");
-		btnNewButton.setBounds(61, 460, 250, 61);
-		panel.add(btnNewButton);
-		btnNewButton.setBackground(new Color(255, 255, 255));
-		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		JButton remove_button = new JButton("Remove a vehicle");
+		remove_button.setBounds(61, 460, 250, 61);
+		panel.add(remove_button);
+		remove_button.setBackground(new Color(255, 255, 255));
+		remove_button.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		
-		JButton loggin = new JButton("Log a vehicle");
-		loggin.setBounds(61, 371, 250, 61);
-		panel.add(loggin);
-		loggin.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		JButton loggin_button = new JButton("Log a vehicle");
+		loggin_button.setBounds(61, 371, 250, 61);
+		panel.add(loggin_button);
+		loggin_button.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		
-		JButton btnNewButton_1 = new JButton("List of vehicles");
-		btnNewButton_1.setBounds(60, 549, 251, 70);
-		panel.add(btnNewButton_1);
-		btnNewButton_1.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		JButton list_button = new JButton("List of vehicles");
+		list_button.setBounds(60, 549, 251, 70);
+		panel.add(list_button);
+		list_button.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		
-		JButton btnNewButton_2 = new JButton("Exit");
-		btnNewButton_2.setBounds(61, 649, 250, 61);
-		panel.add(btnNewButton_2);
-		btnNewButton_2.setFont(new Font("Tahoma", Font.PLAIN, 22));
+		JButton exit_button = new JButton("Exit");
+		exit_button.setBounds(61, 649, 250, 61);
+		panel.add(exit_button);
+		exit_button.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		
 		return panel;
 	}

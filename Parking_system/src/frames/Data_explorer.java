@@ -16,13 +16,14 @@ public class Data_explorer {
 	private JTable parking_table;
 	
 	Object[] data_list = new Object[5];
+	JPanel panel;
 	
 	public Data_explorer() {
 		Create_panel();
 	}
-	
+		
 	public JPanel Create_panel() {
-		JPanel panel = new JPanel();
+		panel = new JPanel();
 		panel.setBounds(378, 0, 731, 738);
 		panel.setLayout(null);
 		
@@ -49,7 +50,6 @@ public class Data_explorer {
 		scrollPane.setViewportView(parking_table);
 		
 		JButton search_button = new JButton("Search");
-		panel.add(search_button);
 		search_button.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		search_button.setBackground(new Color(255, 255, 255));
 		search_button.setBounds(287, 630, 130, 50);
@@ -79,6 +79,12 @@ public class Data_explorer {
 				con.close_connection();
 			}
 		});
+		panel.add(search_button);
+		panel.setVisible(false);
 		return panel;
+	}
+	
+	public void visible_on() {
+		panel.setVisible(true);
 	}
 }
