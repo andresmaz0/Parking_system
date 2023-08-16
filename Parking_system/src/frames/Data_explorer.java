@@ -11,12 +11,14 @@ import java.awt.event.ActionEvent;
 import connection.Connection_sql;
 import java.sql.*;
 import java.awt.Color;
+import javax.swing.JLabel;
 
 public class Data_explorer {
 	private JTable parking_table;
 	
 	Object[] data_list = new Object[5];
 	JPanel panel;
+	private JButton clean_button;
 	
 	public Data_explorer() {
 		Create_panel();
@@ -28,7 +30,7 @@ public class Data_explorer {
 		panel.setLayout(null);
 		
 		JScrollPane scrollPane = new JScrollPane();
-		scrollPane.setBounds(21, 134, 689, 470);
+		scrollPane.setBounds(21, 134, 689, 388);
 		panel.add(scrollPane);
 			
 		parking_table = new JTable();
@@ -52,7 +54,7 @@ public class Data_explorer {
 		JButton search_button = new JButton("Search");
 		search_button.setFont(new Font("Tahoma", Font.PLAIN, 15));
 		search_button.setBackground(new Color(255, 255, 255));
-		search_button.setBounds(287, 630, 130, 50);
+		search_button.setBounds(153, 632, 130, 50);
 		search_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Connection_sql con = new Connection_sql();
@@ -80,6 +82,27 @@ public class Data_explorer {
 			}
 		});
 		panel.add(search_button);
+		
+		JLabel lblNewLabel = new JLabel("Data explorer");
+		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
+		lblNewLabel.setBounds(264, 33, 221, 50);
+		panel.add(lblNewLabel);
+		
+		clean_button = new JButton("Clean");
+		clean_button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				model.setRowCount(0);
+			}
+		});
+		clean_button.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		clean_button.setBounds(447, 632, 130, 50);
+		panel.add(clean_button);
+		
+		JLabel lblNewLabel_1 = new JLabel("Remember always press clean when you want to do a new search");
+		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 14));
+		lblNewLabel_1.setBounds(162, 554, 415, 40);
+		panel.add(lblNewLabel_1);
+		
 		panel.setVisible(false);
 		return panel;
 	}
