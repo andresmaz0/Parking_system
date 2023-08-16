@@ -9,9 +9,13 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import connection.Connection_sql;
+import java.sql.*;
+import java.awt.Color;
 
 public class Data_explorer {
 	private JTable parking_table;
+	
+	Object[] data_list = new Object[5];
 	
 	public Data_explorer() {
 		Create_panel();
@@ -25,23 +29,18 @@ public class Data_explorer {
 		JScrollPane scrollPane = new JScrollPane();
 		scrollPane.setBounds(21, 134, 689, 470);
 		panel.add(scrollPane);
-		
+			
 		parking_table = new JTable();
 		parking_table.setFont(new Font("Tahoma", Font.PLAIN, 15));
-		parking_table.setModel(new DefaultTableModel(
-			new Object[][] {
-			},
-			new String[] {
-				"License plate", "Car owner", "Entry time", "Departure time", "Payment"
-			}
-		) {
-			Class[] columnTypes = new Class[] {
-				String.class, String.class, String.class, String.class, Integer.class
-			};
-			public Class getColumnClass(int columnIndex) {
-				return columnTypes[columnIndex];
-			}
-		});
+		//Creating model
+		DefaultTableModel model = (DefaultTableModel)parking_table.getModel();
+		parking_table.setModel(model);
+		model.addColumn("License plate");
+		model.addColumn("Car owner");
+		model.addColumn("Entry time");
+		model.addColumn("Departure time");
+		model.addColumn("Payment");
+		
 		parking_table.getColumnModel().getColumn(0).setPreferredWidth(96);
 		parking_table.getColumnModel().getColumn(1).setPreferredWidth(173);
 		parking_table.getColumnModel().getColumn(2).setPreferredWidth(125);
@@ -50,13 +49,36 @@ public class Data_explorer {
 		scrollPane.setViewportView(parking_table);
 		
 		JButton search_button = new JButton("Search");
+		panel.add(search_button);
+		search_button.setFont(new Font("Tahoma", Font.PLAIN, 15));
+		search_button.setBackground(new Color(255, 255, 255));
+		search_button.setBounds(287, 630, 130, 50);
 		search_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				DefaultTableModel model = (DefaultTableModel)parking_table.getModel();
+				Connection_sql con = new Connection_sql();
+				try {
+					// beginning connection 
+					Connection new_connection = con.begin_connection();
+					Statement mystatement = new_connection.createStatement();
+					ResultSet myresultset = mystatement.executeQuery("SELECT * FROM parking");
+					
+					while(myresultset.next()) {
+						data_list[0]=(myresultset.getString("license_plate"));
+						data_list[1]=(myresultset.getString("car_owner"));
+						data_list[2]=(myresultset.getString("entry_time"));
+						data_list[3]=(myresultset.getString("depature_time"));
+						data_list[4]=(myresultset.getString("payment"));
+						
+						model.addRow(data_list);
+					}
+					
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				con.close_connection();
 			}
 		});
-		search_button.setBounds(315, 645, 85, 21);
-		panel.add(search_button);
 		return panel;
 	}
 }
