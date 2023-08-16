@@ -16,10 +16,10 @@ public class Main_menu {
 	Panel panel;
 
 	public Main_menu() {
-		Create_panel(null,null);
+		Create_panel(null,null,null);
 	}
 	
-	public Panel Create_panel(Data_explorer data_panel, Log_menu log_panel) {
+	public Panel Create_panel(Data_explorer data_panel, Log_menu log_panel, Remove_menu remove_panel) {
 		panel = new Panel();
 		panel.setBackground(new Color(255, 255, 255));
 		panel.setBounds(0, 0, 376, 743);
@@ -38,6 +38,13 @@ public class Main_menu {
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 36));
 		
 		JButton remove_button = new JButton("Remove a vehicle");
+		remove_button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				data_panel.visible_on(false);
+				log_panel.visible_on(false);
+				remove_panel.visible_on(true);
+			}
+		});
 		remove_button.setBounds(61, 460, 250, 61);
 		panel.add(remove_button);
 		remove_button.setBackground(new Color(255, 255, 255));
@@ -48,6 +55,7 @@ public class Main_menu {
 			public void actionPerformed(ActionEvent e) {
 				data_panel.visible_on(false);
 				log_panel.visible_on(true);
+				remove_panel.visible_on(false);
 			}
 		});
 		loggin_button.setBounds(61, 371, 250, 61);
@@ -59,6 +67,7 @@ public class Main_menu {
 			public void actionPerformed(ActionEvent e) {
 				data_panel.visible_on(true);
 				log_panel.visible_on(false);
+				remove_panel.visible_on(false);
 			}
 		});
 		list_button.setBounds(60, 549, 251, 70);
