@@ -59,6 +59,11 @@ public class Main_menu {
 		list_button.setFont(new Font("Tahoma", Font.PLAIN, 22));
 		
 		JButton exit_button = new JButton("Exit");
+		exit_button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				System.exit(0);
+			}
+		});
 		exit_button.setBounds(61, 649, 250, 61);
 		panel.add(exit_button);
 		exit_button.setFont(new Font("Tahoma", Font.PLAIN, 22));
