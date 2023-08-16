@@ -13,6 +13,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.time.LocalTime;
@@ -89,18 +90,21 @@ public class Log_menu {
 				try {
 					// beginning connection 
 					Connection new_connection = con.begin_connection();
-					PreparedStatement mystatement = new_connection.prepareStatement("insert INTO parking (license_plate,car_owner,entry_time,depature_time,payment)"
+					PreparedStatement mystatement = new_connection.prepareStatement("insert INTO parking (license_plate,car_owner,entry_time)"
 							+ "VALUES (?,?,?)");
-					mystatement.setString(1, license_text.getText());
-					mystatement.setString(2, name_text.getText());
-					
 					// Obtener la hora actual
 		            LocalTime current_time = LocalTime.now();
 
 		            // Convertir la hora actual a Time
 		            Time registration_time = Time.valueOf(current_time);
-		            
-					mystatement.setTime(0, registration_time);
+					
+					mystatement.setString(1, license_text.getText());
+					mystatement.setString(2, name_text.getText());
+					mystatement.setTime(3, registration_time);	
+					
+					mystatement.executeUpdate();
+					
+					mystatement.close();
 					
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
@@ -117,7 +121,6 @@ public class Log_menu {
 	}
 	
 	public void visible_on(boolean state) {
-		System.out.println("entre en funcion");
 		panel.setVisible(state);
 	}
 }
