@@ -2,11 +2,23 @@ package frames;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
+
+import connection.Connection_sql;
+
 import java.awt.Color;
 import javax.swing.JButton;
+import java.awt.event.ActionListener;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Time;
+import java.time.LocalTime;
+import java.awt.event.ActionEvent;
 
 public class Remove_menu {
 	
@@ -16,6 +28,12 @@ public class Remove_menu {
 	
 	public Remove_menu() {
 		Create_panel();
+	}
+	
+	public JPanel Create_panel() {
+		panel = new JPanel();
+		panel.setBounds(378, 0, 731, 738);
+		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Remove vehicle menu");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 30));
@@ -48,15 +66,40 @@ public class Remove_menu {
 		panel.add(lblNewLabel_2);
 		
 		JButton remove_button = new JButton("Remove Vehicle");
+		remove_button.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent e) {
+				Connection_sql con = new Connection_sql();
+				try {
+					// beginning connection 
+					Connection new_connection = con.begin_connection();
+					PreparedStatement mystatement = new_connection.prepareStatement("insert INTO parking (depature_time,payment)"
+							+ "VALUES (?,?) WHERE license_plate=?");
+					// Obtener la hora actual
+		            LocalTime current_time = LocalTime.now();
+
+		            // Convertir la hora actual a Time
+		            Time registration_time = Time.valueOf(current_time);
+					
+		            mystatement.setTime(1, registration_time);	
+					mystatement.setString(2, payment);
+					mystatement.setString(3, license_text.getText());
+					
+					mystatement.executeUpdate();
+					
+					JOptionPane.showMessageDialog(remove_button, "Vehicle removed");
+					
+					mystatement.close();
+					
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+				con.close_connection();
+			}
+		});
 		remove_button.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		remove_button.setBounds(228, 342, 241, 83);
 		panel.add(remove_button);
-	}
-	
-	public JPanel Create_panel() {
-		panel = new JPanel();
-		panel.setBounds(378, 0, 731, 738);
-		panel.setLayout(null);
 		
 		return panel;
 	}
