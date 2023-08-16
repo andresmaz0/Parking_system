@@ -107,4 +107,9 @@ public class Remove_menu {
 		
 		return panel;
 	}
+	
+	public void visible_on(boolean state) {
+		panel.setVisible(state);
+	}
+	
 }
