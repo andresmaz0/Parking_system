@@ -15,6 +15,9 @@ public class Main {
 		Log_menu mylog = new Log_menu();
 		first_frame.getContentPane().add(mylog.Create_panel());
 		
+		Remove_menu myremove = new Remove_menu();
+		first_frame.getContentPane().add(myremove.Create_panel(mylog));
+		
 		Main_menu mymenu = new Main_menu();
 		first_frame.getContentPane().add(mymenu.Create_panel(myexplorer,mylog));
 	}
