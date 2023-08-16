@@ -6,27 +6,44 @@ import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 import javax.swing.JButton;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 
 public class Log_menu {
 	
 	JPanel panel;
-	private JTextField textField;
-	private JTextField textField_1;
+	private JTextField license_text;
+	private JTextField name_text;
 	
 	public Log_menu() {
 		Create_panel();
+	}
+	
+	public JPanel Create_panel() {
+		panel = new JPanel();
+		panel.setBounds(378, 0, 731, 738);
+		panel.setLayout(null);
 		
 		JLabel lblNewLabel = new JLabel("Log Menu");
 		lblNewLabel.setFont(new Font("Tahoma", Font.PLAIN, 35));
 		lblNewLabel.setBounds(266, 26, 153, 96);
 		panel.add(lblNewLabel);
 		
-		textField = new JTextField();
-		textField.setHorizontalAlignment(SwingConstants.CENTER);
-		textField.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		textField.setBounds(262, 212, 170, 78);
-		panel.add(textField);
-		textField.setColumns(10);
+		license_text = new JTextField();
+		license_text.addKeyListener(new KeyAdapter() {
+			@Override
+			public void keyTyped(KeyEvent e) {
+				if(license_text.getText().length() >= 6)
+			    {
+			        e.consume();
+			    }
+			}
+		});
+		license_text.setHorizontalAlignment(SwingConstants.CENTER);
+		license_text.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		license_text.setBounds(262, 212, 170, 78);
+		panel.add(license_text);
+		license_text.setColumns(10);
 		
 		JLabel lblNewLabel_1 = new JLabel("License Plate");
 		lblNewLabel_1.setFont(new Font("Tahoma", Font.PLAIN, 25));
@@ -38,23 +55,17 @@ public class Log_menu {
 		lblNewLabel_2.setBounds(215, 344, 273, 54);
 		panel.add(lblNewLabel_2);
 		
-		textField_1 = new JTextField();
-		textField_1.setHorizontalAlignment(SwingConstants.CENTER);
-		textField_1.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		textField_1.setColumns(10);
-		textField_1.setBounds(65, 427, 596, 78);
-		panel.add(textField_1);
+		name_text = new JTextField();
+		name_text.setHorizontalAlignment(SwingConstants.CENTER);
+		name_text.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		name_text.setColumns(10);
+		name_text.setBounds(65, 427, 596, 78);
+		panel.add(name_text);
 		
 		JButton btnNewButton = new JButton("Log");
 		btnNewButton.setFont(new Font("Tahoma", Font.PLAIN, 30));
 		btnNewButton.setBounds(305, 587, 102, 63);
 		panel.add(btnNewButton);
-	}
-	
-	public JPanel Create_panel() {
-		panel = new JPanel();
-		panel.setBounds(378, 0, 731, 738);
-		panel.setLayout(null);
 		
 		return panel;
 	}
