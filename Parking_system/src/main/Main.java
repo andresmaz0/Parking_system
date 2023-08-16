@@ -8,9 +8,14 @@ public class Main {
 		Background first_frame = new Background();
 		first_frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		first_frame.getContentPane().setLayout(null);
+		
 		Data_explorer myexplorer = new Data_explorer();
 		first_frame.getContentPane().add(myexplorer.Create_panel());
+		
+		Log_menu mylog = new Log_menu();
+		first_frame.getContentPane().add(mylog.Create_panel());
+		
 		Main_menu mymenu = new Main_menu();
-		first_frame.getContentPane().add(mymenu.Create_panel(myexplorer));
+		first_frame.getContentPane().add(mymenu.Create_panel(myexplorer,mylog));
 	}
 }

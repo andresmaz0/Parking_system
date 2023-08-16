@@ -109,4 +109,8 @@ public class Log_menu {
 		
 		return panel;
 	}
+	
+	public void visible_on(boolean state) {
+		panel.setVisible(state);
+	}
 }

@@ -16,10 +16,10 @@ public class Main_menu {
 	Panel panel;
 
 	public Main_menu() {
-		Create_panel(null);
+		Create_panel(null,null);
 	}
 	
-	public Panel Create_panel(Data_explorer data_panel) {
+	public Panel Create_panel(Data_explorer data_panel, Log_menu log_panel) {
 		panel = new Panel();
 		panel.setBackground(new Color(255, 255, 255));
 		panel.setBounds(0, 0, 376, 743);
@@ -51,7 +51,8 @@ public class Main_menu {
 		JButton list_button = new JButton("List of vehicles");
 		list_button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				data_panel.visible_on();
+				data_panel.visible_on(true);
+				log_panel.visible_on(false);
 			}
 		});
 		list_button.setBounds(60, 549, 251, 70);

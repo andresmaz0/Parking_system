@@ -107,7 +107,7 @@ public class Data_explorer {
 		return panel;
 	}
 	
-	public void visible_on() {
-		panel.setVisible(true);
+	public void visible_on(boolean state) {
+		panel.setVisible(state);
 	}
 }
