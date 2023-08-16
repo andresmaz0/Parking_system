@@ -2,6 +2,8 @@ package frames;
 
 import javax.swing.JPanel;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+
 import java.awt.Font;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
@@ -103,6 +105,8 @@ public class Log_menu {
 					mystatement.setTime(3, registration_time);	
 					
 					mystatement.executeUpdate();
+					
+					JOptionPane.showMessageDialog(log_button, "Vehicle Logged");
 					
 					mystatement.close();
 					
