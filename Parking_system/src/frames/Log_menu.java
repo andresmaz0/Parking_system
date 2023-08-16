@@ -28,6 +28,7 @@ public class Log_menu {
 	JPanel panel;
 	private JTextField license_text;
 	private JTextField name_text;
+	Time registration_time;
 	
 	public Log_menu() {
 		Create_panel();
@@ -98,7 +99,7 @@ public class Log_menu {
 		            LocalTime current_time = LocalTime.now();
 
 		            // Convertir la hora actual a Time
-		            Time registration_time = Time.valueOf(current_time);
+		            registration_time = Time.valueOf(current_time);
 					
 					mystatement.setString(1, license_text.getText());
 					mystatement.setString(2, name_text.getText());
@@ -126,5 +127,9 @@ public class Log_menu {
 	
 	public void visible_on(boolean state) {
 		panel.setVisible(state);
+	}
+	
+	public Time get_time() {
+		return registration_time;
 	}
 }

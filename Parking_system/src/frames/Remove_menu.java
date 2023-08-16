@@ -15,22 +15,27 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.sql.Time;
 import java.time.LocalTime;
 import java.awt.event.ActionEvent;
+import java.awt.event.ContainerAdapter;
+import java.awt.event.ContainerEvent;
 
 public class Remove_menu {
 	
 	JPanel panel;
 	private JTextField license_text;
 	private JTextField payment_text;
+	Double payment;
 	
 	public Remove_menu() {
-		Create_panel();
+		Create_panel(null);
 	}
 	
-	public JPanel Create_panel() {
+	public JPanel Create_panel(Log_menu log_panel) {
 		panel = new JPanel();
 		panel.setBounds(378, 0, 731, 738);
 		panel.setLayout(null);
@@ -53,6 +58,7 @@ public class Remove_menu {
 		panel.add(license_text);
 		
 		payment_text = new JTextField();
+		payment_text.setText(payment.toString());
 		payment_text.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		payment_text.setBackground(new Color(255, 255, 255));
 		payment_text.setEnabled(false);
@@ -78,11 +84,13 @@ public class Remove_menu {
 		            LocalTime current_time = LocalTime.now();
 
 		            // Convertir la hora actual a Time
-		            Time registration_time = Time.valueOf(current_time);
+		            Time depature_time = Time.valueOf(current_time);
 					
-		            mystatement.setTime(1, registration_time);	
-					mystatement.setString(2, payment);
+		            payment = ((log_panel.get_time()).compareTo(depature_time))*10.50;
+		            
+		            mystatement.setTime(1, depature_time);	
 					mystatement.setString(3, license_text.getText());
+					mystatement.setDouble(2, payment);
 					
 					mystatement.executeUpdate();
 					
