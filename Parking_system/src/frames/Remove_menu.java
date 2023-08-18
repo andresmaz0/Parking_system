@@ -97,22 +97,25 @@ public class Remove_menu {
 			public void actionPerformed(ActionEvent e) {
 				Connection_sql con = new Connection_sql();
 				try {
+					
+					//First Query
+					
 					// beginning connection 
 					Connection new_connection = con.begin_connection();
 					PreparedStatement mystatement = new_connection.prepareStatement("Update parking SET depature_time = ?" +
 					" WHERE license_plate=?");
-					// Obtener la hora actual
+					// Getting current time
 		            LocalTime current_time = LocalTime.now();
 
-		            // Convertir la hora actual a Time
+		            // Convert Localtime to Time
 		            Time depature_time = Time.valueOf(current_time);
 		            
 		            mystatement.setTime(1, depature_time);	
 					mystatement.setString(2, (license_text.getText()).toString());
 					
-					//payment_text.setText(payment.toString());
-					
 					mystatement.executeUpdate();
+					
+					//Second Query
 					
 					PreparedStatement mystatement2 = new_connection.prepareStatement("SELECT TIMESTAMPDIFF(HOUR,entry_time,depature_time) FROM parking" +
 							" WHERE license_plate=?");
@@ -124,6 +127,15 @@ public class Remove_menu {
 						text_parkinghours.setText(myresultset.getString(1));
 					}
 					payment_text.setText(payment.toString()+"$");
+					
+					//Third Query
+					PreparedStatement mystatement3 = new_connection.prepareStatement("Update parking SET payment = ?" +
+							" WHERE license_plate=?");
+					
+					mystatement3.setDouble(1, payment);	
+					mystatement3.setString(2, (license_text.getText()).toString());
+					
+					mystatement3.executeUpdate();
 					
 					JOptionPane.showMessageDialog(remove_button, "Vehicle removed");
 					
