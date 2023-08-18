@@ -15,6 +15,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Time;
 import java.time.LocalTime;
@@ -25,6 +26,7 @@ public class Remove_menu {
 	JPanel panel;
 	private JTextField license_text;
 	private JTextField payment_text;
+	Double payment;
 	
 	public Remove_menu() {
 		Create_panel(null);
@@ -88,8 +90,21 @@ public class Remove_menu {
 					
 					mystatement.executeUpdate();
 					
+					PreparedStatement mystatement2 = new_connection.prepareStatement("SELECT TIMESTAMPDIFF(HOUR,entry_time,depature_time) FROM parking" +
+							" WHERE license_plate=?");
+					mystatement2.setString(1, (license_text.getText()).toString());
+					ResultSet myresultset = mystatement2.executeQuery();
+					
+					while(myresultset.next()) {
+						payment = myresultset.getInt(1) * 7.45;
+						System.out.println(payment);
+					}
+					
+					payment_text.setText(payment.toString());
+					
 					JOptionPane.showMessageDialog(remove_button, "Vehicle removed");
 					
+					mystatement2.close();
 					mystatement.close();
 					
 				} catch (SQLException e1) {
