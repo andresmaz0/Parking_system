@@ -32,25 +32,6 @@ public class Remove_menu {
 	public Remove_menu() {
 		Create_panel(null);
 		
-		JLabel lblNewLabel_3 = new JLabel("The cost of parking is 7.5$ per hour");
-		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 19));
-		lblNewLabel_3.setBounds(201, 697, 311, 31);
-		panel.add(lblNewLabel_3);
-		
-		JLabel lblNewLabel_2 = new JLabel("Parking hours");
-		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblNewLabel_2.setBounds(425, 472, 238, 38);
-		panel.add(lblNewLabel_2);
-		
-		text_parkinghours = new JTextField();
-		text_parkinghours.setHorizontalAlignment(SwingConstants.CENTER);
-		text_parkinghours.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		text_parkinghours.setEnabled(false);
-		text_parkinghours.setDisabledTextColor(Color.BLACK);
-		text_parkinghours.setColumns(10);
-		text_parkinghours.setBackground(Color.WHITE);
-		text_parkinghours.setBounds(377, 537, 279, 119);
-		panel.add(text_parkinghours);
 	}
 	
 	public JPanel Create_panel(Log_menu log_panel) {
@@ -90,6 +71,26 @@ public class Remove_menu {
 		lblNewLabel_2.setBounds(68, 472, 238, 38);
 		panel.add(lblNewLabel_2);
 		
+		JLabel lblNewLabel_3 = new JLabel("The cost of parking is 7.5$ per hour");
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		lblNewLabel_3.setBounds(197, 680, 311, 31);
+		panel.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_4 = new JLabel("Parking hours");
+		lblNewLabel_4.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblNewLabel_4.setBounds(437, 472, 176, 38);
+		panel.add(lblNewLabel_4);
+		
+		text_parkinghours = new JTextField();
+		text_parkinghours.setHorizontalAlignment(SwingConstants.CENTER);
+		text_parkinghours.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		text_parkinghours.setEnabled(false);
+		text_parkinghours.setDisabledTextColor(Color.BLACK);
+		text_parkinghours.setColumns(10);
+		text_parkinghours.setBackground(Color.WHITE);
+		text_parkinghours.setBounds(377, 537, 279, 119);
+		panel.add(text_parkinghours);
+		
 		JButton remove_button = new JButton("Remove Vehicle");
 		remove_button.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
@@ -120,9 +121,8 @@ public class Remove_menu {
 					
 					while(myresultset.next()) {
 						payment = myresultset.getInt(1) * 7.45;
-						System.out.println(payment);
+						text_parkinghours.setText(myresultset.getString(1));
 					}
-					
 					payment_text.setText(payment.toString());
 					
 					JOptionPane.showMessageDialog(remove_button, "Vehicle removed");
