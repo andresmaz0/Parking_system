@@ -123,7 +123,7 @@ public class Remove_menu {
 						payment = myresultset.getInt(1) * 7.45;
 						text_parkinghours.setText(myresultset.getString(1));
 					}
-					payment_text.setText(payment.toString());
+					payment_text.setText(payment.toString()+"$");
 					
 					JOptionPane.showMessageDialog(remove_button, "Vehicle removed");
 					
