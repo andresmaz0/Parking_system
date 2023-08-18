@@ -10,9 +10,9 @@ It counts with:
 - Exit
 
 It was made with:
--JDBC of Java "20.0.1"
--Java Swing library
--Java Awt library 
--Data base in MySQL Workbench 8.0.
+- JDBC of Java "20.0.1"
+- Java Swing library
+- Java Awt library 
+- Data base in MySQL Workbench 8.0.
 
 
