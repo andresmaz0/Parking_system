@@ -30,6 +30,11 @@ public class Remove_menu {
 	
 	public Remove_menu() {
 		Create_panel(null);
+		
+		JLabel lblNewLabel_3 = new JLabel("The cost of parking is 7.5$ per hour");
+		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 19));
+		lblNewLabel_3.setBounds(201, 697, 311, 31);
+		panel.add(lblNewLabel_3);
 	}
 	
 	public JPanel Create_panel(Log_menu log_panel) {
@@ -55,16 +60,18 @@ public class Remove_menu {
 		panel.add(license_text);
 		
 		payment_text = new JTextField();
+		payment_text.setDisabledTextColor(new Color(0, 0, 0));
+		payment_text.setHorizontalAlignment(SwingConstants.CENTER);
+		payment_text.setEnabled(false);
 		payment_text.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		payment_text.setBackground(new Color(255, 255, 255));
-		payment_text.setEnabled(false);
-		payment_text.setBounds(215, 539, 279, 119);
+		payment_text.setBounds(43, 537, 279, 119);
 		panel.add(payment_text);
 		payment_text.setColumns(10);
 		
 		JLabel lblNewLabel_2 = new JLabel("Payment to be made");
 		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 25));
-		lblNewLabel_2.setBounds(242, 473, 238, 38);
+		lblNewLabel_2.setBounds(68, 472, 238, 38);
 		panel.add(lblNewLabel_2);
 		
 		JButton remove_button = new JButton("Remove Vehicle");
@@ -124,5 +131,4 @@ public class Remove_menu {
 	public void visible_on(boolean state) {
 		panel.setVisible(state);
 	}
-	
 }
