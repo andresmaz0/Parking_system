@@ -153,6 +153,8 @@ public class Remove_menu {
 		remove_button.setBounds(228, 342, 241, 83);
 		panel.add(remove_button);
 		
+		panel.setVisible(false);
+		
 		return panel;
 	}
 	

@@ -125,6 +125,7 @@ public class Log_menu {
 		log_button.setBounds(299, 581, 102, 63);
 		panel.add(log_button);
 		
+		panel.setVisible(false);
 		return panel;
 	}
 	
