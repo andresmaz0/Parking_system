@@ -25,7 +25,6 @@ public class Remove_menu {
 	JPanel panel;
 	private JTextField license_text;
 	private JTextField payment_text;
-	Double payment;
 	
 	public Remove_menu() {
 		Create_panel(null);
@@ -54,7 +53,6 @@ public class Remove_menu {
 		panel.add(license_text);
 		
 		payment_text = new JTextField();
-		payment_text.setText(payment.toString());
 		payment_text.setFont(new Font("Tahoma", Font.PLAIN, 25));
 		payment_text.setBackground(new Color(255, 255, 255));
 		payment_text.setEnabled(false);
@@ -69,24 +67,25 @@ public class Remove_menu {
 		
 		JButton remove_button = new JButton("Remove Vehicle");
 		remove_button.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent e) {
 				Connection_sql con = new Connection_sql();
 				try {
 					// beginning connection 
 					Connection new_connection = con.begin_connection();
 					PreparedStatement mystatement = new_connection.prepareStatement("insert INTO parking (depature_time,payment)"
-							+ "VALUES (?,?) WHERE license_plate=?");
+							+ "VALUES (?,TIMESTAMPDIFF(HOUR,entry_time,?)," + "WHERE license_plate=?");
 					// Obtener la hora actual
 		            LocalTime current_time = LocalTime.now();
 
 		            // Convertir la hora actual a Time
 		            Time depature_time = Time.valueOf(current_time);
-					
-		            payment = ((log_panel.get_time()).compareTo(depature_time))*10.50;
 		            
 		            mystatement.setTime(1, depature_time);	
+					mystatement.setTime(2, depature_time);
 					mystatement.setString(3, license_text.getText());
-					mystatement.setDouble(2, payment);
+					
+					//payment_text.setText(payment.toString());
 					
 					mystatement.executeUpdate();
 					

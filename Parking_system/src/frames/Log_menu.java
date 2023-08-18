@@ -29,6 +29,7 @@ public class Log_menu {
 	private JTextField license_text;
 	private JTextField name_text;
 	Time registration_time;
+	LocalTime current_time;
 	
 	public Log_menu() {
 		Create_panel();
@@ -96,7 +97,7 @@ public class Log_menu {
 					PreparedStatement mystatement = new_connection.prepareStatement("insert INTO parking (license_plate,car_owner,entry_time)"
 							+ "VALUES (?,?,?)");
 					// Obtener la hora actual
-		            LocalTime current_time = LocalTime.now();
+		            current_time = LocalTime.now();
 
 		            // Convertir la hora actual a Time
 		            registration_time = Time.valueOf(current_time);
@@ -106,6 +107,8 @@ public class Log_menu {
 					mystatement.setTime(3, registration_time);	
 					
 					mystatement.executeUpdate();
+					
+					get_time();
 					
 					JOptionPane.showMessageDialog(log_button, "Vehicle Logged");
 					
@@ -129,7 +132,8 @@ public class Log_menu {
 		panel.setVisible(state);
 	}
 	
-	public Time get_time() {
-		return registration_time;
+	public LocalTime get_time(){
+		System.out.println(current_time);
+		return current_time;
 	}
 }
