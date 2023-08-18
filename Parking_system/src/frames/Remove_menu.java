@@ -27,6 +27,7 @@ public class Remove_menu {
 	private JTextField license_text;
 	private JTextField payment_text;
 	Double payment;
+	private JTextField text_parkinghours;
 	
 	public Remove_menu() {
 		Create_panel(null);
@@ -35,6 +36,21 @@ public class Remove_menu {
 		lblNewLabel_3.setFont(new Font("Tahoma", Font.PLAIN, 19));
 		lblNewLabel_3.setBounds(201, 697, 311, 31);
 		panel.add(lblNewLabel_3);
+		
+		JLabel lblNewLabel_2 = new JLabel("Parking hours");
+		lblNewLabel_2.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		lblNewLabel_2.setBounds(425, 472, 238, 38);
+		panel.add(lblNewLabel_2);
+		
+		text_parkinghours = new JTextField();
+		text_parkinghours.setHorizontalAlignment(SwingConstants.CENTER);
+		text_parkinghours.setFont(new Font("Tahoma", Font.PLAIN, 25));
+		text_parkinghours.setEnabled(false);
+		text_parkinghours.setDisabledTextColor(Color.BLACK);
+		text_parkinghours.setColumns(10);
+		text_parkinghours.setBackground(Color.WHITE);
+		text_parkinghours.setBounds(377, 537, 279, 119);
+		panel.add(text_parkinghours);
 	}
 	
 	public JPanel Create_panel(Log_menu log_panel) {
