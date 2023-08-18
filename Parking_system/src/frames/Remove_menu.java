@@ -73,8 +73,8 @@ public class Remove_menu {
 				try {
 					// beginning connection 
 					Connection new_connection = con.begin_connection();
-					PreparedStatement mystatement = new_connection.prepareStatement("insert INTO parking (depature_time,payment)"
-							+ "VALUES (?,TIMESTAMPDIFF(HOUR,entry_time,?)," + "WHERE license_plate=?");
+					PreparedStatement mystatement = new_connection.prepareStatement("Update parking SET depature_time = ?" +
+					" WHERE license_plate=?");
 					// Obtener la hora actual
 		            LocalTime current_time = LocalTime.now();
 
@@ -82,8 +82,7 @@ public class Remove_menu {
 		            Time depature_time = Time.valueOf(current_time);
 		            
 		            mystatement.setTime(1, depature_time);	
-					mystatement.setTime(2, depature_time);
-					mystatement.setString(3, license_text.getText());
+					mystatement.setString(2, (license_text.getText()).toString());
 					
 					//payment_text.setText(payment.toString());
 					
